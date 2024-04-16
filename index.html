@@ -1,0 +1,376 @@
+<!doctype html>
+<html>
+    <head>
+        
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js'></script>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="style.css">
+        <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 300;
+            font-style: normal;
+            margin: auto;
+            font-size: 20px;
+        }
+        .title{
+            margin: 10px;
+            display: flex;
+            justify-content: center;
+            color: #FF2800;
+            font-size: 24px;
+            flex-direction: row;
+            align-items: center;
+        }
+        .maincontent{
+            justify-content: space-around;
+            display: flex;
+            flex-direction: row;
+        }
+        .instructions{
+            display: flex;
+            flex-direction: column;
+            margin-top: 8px;
+
+        }
+        .scores{
+            display: flex;
+            flex-direction: column;
+            border-style: solid;
+            border-width: 4px;
+            border-color: black;
+            border-radius: 12px;
+            padding: 10px;
+        }
+        .item{
+            display: flex;
+            flex-direction: row;
+            margin-left: 4px;
+            align-items: center;
+        }
+        .scoretag{
+            margin: 10px;
+            padding: 10px;
+        }
+        .big {
+            width: 100px;
+            height: 100px;
+        }
+        .textitem{
+            display: flex;
+            flex-direction: column;
+            justify-content: start;
+        }
+        .textitem h3{
+            margin-bottom: 10px;
+            margin-left: 8px;
+
+        }
+
+        .textitem p{
+            margin-top: 0;
+            margin-left: 8px;
+            color: rgba(0,0,0,.5)
+        }
+
+        #icon{
+            width: 100px;
+            height: 100px;
+            vertical-align: middle;
+            align-items: center;
+        }
+        .small{
+            width: 100px;
+            height: 100px;
+        }
+       .canva{
+            width: 100%;
+            height: 100%;
+       }
+       .canvaholder{
+            align-items: center;
+       }
+       #totalScore{
+            font-weight: bolder;
+            border: solid;
+            border-color: #00A86b;
+            color: white;
+            background: #00A86b;
+            margin-left: auto;
+            margin-right: auto;
+            font-size: 32px;
+       }
+       #leaderboard{
+            align-items: center;
+            border: solid;
+            margin-top: 90px;
+            color: white;
+            border-color: #cea2fd;
+            background: #cea2fd;
+            margin-left: auto;
+            margin-right: auto;
+       }
+        </style>
+    </head>
+    <body>
+        <div class="canvaholder"> 
+            <img id="image1" class = "canva" src="Image1.png">
+            <img id="image2" class = "canva" src="Image2.png">
+            <img id="image3" class = "canva" src="Image3.png">
+            <img id="image4" class = "canva" src="Image4.png">
+            <img id="image5" class = "canva" src="Image5.png">
+            <img id="image6" class = "canva" src="Image6.png">
+            <img id="image7" class = "canva" src="Image7.png">
+            <img id="image8" class = "canva" src="Image8.png">
+            <img id="image9" class = "canva" src="Image9.png">
+            <img id="image10" class = "canva" src="Image10.png">
+            <img id="image11" class = "canva" src="Image11.png">
+            <img id="image12" class = "canva" src="Image12.png">
+            <img id="image13" class = "canva" src="Image13.png">
+            <img id="image14" class = "canva" src="Image14.png">
+        </div>
+        <!--Header-->
+        <div class="title">
+            <img class="big" src="super-mario.png">
+            <h1 style="margin-left: 25px; margin-right: 25px;">Mario City</h1>
+            <img class="big" src="mushroom.png">
+        </div>
+        <!--Main Content-->
+        <div class="maincontent">
+            <div class="instructions">
+                <h1 style="text-align: center; color:#FF2800;">MARIO NEEDS YOUR HELP</h1>
+                <div class="item">
+                    <div>
+                        <img id="icon" src="happymario.ico">
+                    </div>
+                    <div class="textitem">
+                        <h3>Place Vehicles to make the Toads Happy</h3>
+                        <p>Toads are happy if they can get to work</p>
+                    </div>
+                </div>
+                <div class="item">
+                    <div>
+                        <img class="small" src="Boo-icon.png">
+                    </div>
+                    <div class="textitem">
+                        <h3>Avoid Pollution!</h3>
+                        <p>Some vehicles have pollution. Pollution make the toads mad</p>
+                    </div>
+                </div>
+                <div class="item">
+                    <div>
+                        <img class="small" src="coin-no-bg.png">
+                    </div>
+                    <div class="textitem">
+                        <h3>Don't spend too much money!</h3>
+                        <p>Some vehicles are more expensive than others</p>
+                    </div>
+                </div>
+                <div class="item">
+                    <div>
+                        <img class="small" src="star.png">
+                    </div>
+                    <div class="textitem">
+                        <h3>Get the highest score you can!</h3>
+                        <p>Make toads happy, avoid pollution, and don't spend too much!</p>
+                    </div>
+                </div>
+            </div>
+            <div class="scores">
+                <h1 class="scoretag">Scoreboard</h1>
+                <div id="totalScore" class="scoretag">Total Score: 0</div>
+                <div id="happinessScore" class="scoretag">Happyiness: 0</div>
+                <div id="pollutionScore" class="scoretag">Pollution: 0</div>
+                <div id="budget" class="scoretag">Money Spent: 0</div>
+                <div id="added" class="scoretag">Recent Vehicle</div>
+                <div id="highScore" class="scoretag"> High Score: 0</div>
+            </div>
+        </div>
+        
+        <script src="game.js"></script>
+
+        
+        <script>
+            
+        var socket = io();
+
+        socket.on('updateScores', function(scores) {
+        document.getElementById('totalScore').innerText = "Total Score: " + scores.totalScore;
+        document.getElementById('happinessScore').innerText = "Happiness: " + scores.happinessScore;
+        document.getElementById('pollutionScore').innerText = "Pollution: " + scores.pollutionScore;
+        document.getElementById('budget').innerText = "Money Spent: " + scores.budget;
+        document.getElementById('highScore').innerText = "High Score: " + scores.highScore;
+        })
+
+        socket.on('addVehicle', function(addedVehicle){
+            document.getElementById('added').innerText = "Added Vehicle: " + addedVehicle;
+            document.getElementById('added').style.color = 'Green'
+        })
+
+        socket.on('removeVehicle', function(removedVehicle){
+            document.getElementById('added').innerText = "Removed Vehicle: " + removedVehicle;
+            document.getElementById('added').style.color = 'Red'
+        })
+
+        socket.on('showImages', function() {
+            var images = document.querySelectorAll('img.canva');
+            images.forEach(function(img) {
+            img.style.display = '';
+        });
+    });
+        socket.on('hideImages', function() {
+            var images = document.querySelectorAll('img.canva');
+            images.forEach(function(img) {
+            img.style.display = 'none';
+        });
+    });
+    socket.on('showImage1', function() {
+    var allImages = document.querySelectorAll('img.canva');
+    allImages.forEach(function(img) {
+        img.style.display = 'none';
+    });
+    var image = document.getElementById('image1');
+    if(image1) {
+        image1.style.display = ''; 
+    }
+});
+socket.on('showImage2', function() {
+    var allImages = document.querySelectorAll('img.canva');
+    allImages.forEach(function(img) {
+        img.style.display = 'none';
+    });
+    var Image1 = document.getElementById('image2');
+    if(image1) {
+        image1.style.display = ''; 
+    }
+});
+socket.on('showImage3', function() {
+    var allImages = document.querySelectorAll('img.canva');
+    allImages.forEach(function(img) {
+        img.style.display = 'none';
+    });
+    var image = document.getElementById('image3');
+    if(image1) {
+        image1.style.display = ''; 
+    }
+});
+socket.on('showImage4', function() {
+    var allImages = document.querySelectorAll('img.canva');
+    allImages.forEach(function(img) {
+        img.style.display = 'none';
+    });
+    var image = document.getElementById('image4');
+    if(image1) {
+        image1.style.display = ''; 
+    }
+});
+socket.on('showImage5', function() {
+    var allImages = document.querySelectorAll('img.canva');
+    allImages.forEach(function(img) {
+        img.style.display = 'none';
+    });
+    var image = document.getElementById('image5');
+    if(image1) {
+        image1.style.display = ''; 
+    }
+});
+socket.on('showImage6', function() {
+    var allImages = document.querySelectorAll('img.canva');
+    allImages.forEach(function(img) {
+        img.style.display = 'none';
+    });
+    var image = document.getElementById('image6');
+    if(image1) {
+        image1.style.display = ''; 
+    }
+});
+socket.on('showImage7', function() {
+    var allImages = document.querySelectorAll('img.canva');
+    allImages.forEach(function(img) {
+        img.style.display = 'none';
+    });
+    var image = document.getElementById('image7');
+    if(image1) {
+        image1.style.display = ''; 
+    }
+});
+socket.on('showImage8', function() {
+    var allImages = document.querySelectorAll('img.canva');
+    allImages.forEach(function(img) {
+        img.style.display = 'none';
+    });
+    var image = document.getElementById('image8');
+    if(image1) {
+        image1.style.display = ''; 
+    }
+});
+socket.on('showImage9', function() {
+    var allImages = document.querySelectorAll('img.canva');
+    allImages.forEach(function(img) {
+        img.style.display = 'none';
+    });
+    var image = document.getElementById('image9');
+    if(image1) {
+        image1.style.display = ''; 
+    }
+});
+
+socket.on('showImage10', function() {
+    var allImages = document.querySelectorAll('img.canva');
+    allImages.forEach(function(img) {
+        img.style.display = 'none';
+    });
+    var image = document.getElementById('image10');
+    if(image1) {
+        image1.style.display = ''; 
+    }
+});
+
+socket.on('showImage11', function() {
+    var allImages = document.querySelectorAll('img.canva');
+    allImages.forEach(function(img) {
+        img.style.display = 'none';
+    });
+    var image = document.getElementById('image11');
+    if(image1) {
+        image1.style.display = ''; 
+    }
+});
+
+socket.on('showImage12', function() {
+    var allImages = document.querySelectorAll('img.canva');
+    allImages.forEach(function(img) {
+        img.style.display = 'none';
+    });
+    var image = document.getElementById('image12');
+    if(image1) {
+        image1.style.display = ''; 
+    }
+});
+socket.on('showImage13', function() {
+    var allImages = document.querySelectorAll('img.canva');
+    allImages.forEach(function(img) {
+        img.style.display = 'none';
+    });
+    var image = document.getElementById('image13');
+    if(image1) {
+        image1.style.display = ''; 
+    }
+});
+socket.on('showImage14', function() {
+    var allImages = document.querySelectorAll('img.canva');
+    allImages.forEach(function(img) {
+        img.style.display = 'none';
+    });
+    var image = document.getElementById('image14');
+    if(image1) {
+        image1.style.display = ''; 
+    }
+});
+        </script>
+        
+    </body>
+</html>
