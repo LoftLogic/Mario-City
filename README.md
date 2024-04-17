@@ -1,5 +1,5 @@
 # Mario-City
-Engineering Project for a child education sustainablity exhibit, programmed by Evan Li, and built by Trevor Lee, Eamon Kahn, and Charles Levine.
+Engineering Project for a child education sustainablity exhibit, programmed by Evan Li.
 Focuses on utilizing programming and electronics to create an immersive and educational gameplay experience.
 Engineering design was done by Trevor Lee, Eamon Kahn, and Charles Levine.
 
