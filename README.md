@@ -1,10 +1,9 @@
 # Mario-City
 Engineering Project for a child education sustainablity exhibit, programmed by Evan Li.
 Focuses on utilizing programming and electronics to create an immersive and educational gameplay experience.
-Engineering design was done by Trevor Lee, Eamon Kahn, and Charles Levine.
 
-Uses HTML, JavaScript, and Arduino.
-Requries a Red Board and game pieces with resistors
+Uses HTML, JavaScript, and C++.
+Requries a Red Board and game pieces with resistors as well as Arduino IDE
 
 How It Works:
 The redboard is connected to several analog pins and a button, which is hooked up to a computer.
